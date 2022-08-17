@@ -1,0 +1,30 @@
+name: Build and deploy Jekyll with Hugo site to GitHub Pages
+
+on:
+  push:
+    branches: [main, master]
+
+jobs:
+  github-pages:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: true  # Fetch Hugo themes (true OR recursive)
+          fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+
+      - name: Install Ruby and Gems
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.0' # Not needed with a .ruby-version file
+          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+
+      - name: Build with Jekyll
+        run: bundle exec jekyll build --destination public
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: public
+
