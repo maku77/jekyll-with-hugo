@@ -32,6 +32,12 @@ jobs:
         run: hugo --minify
         working-directory: hugo-files
 
+      - name: Merge public directories without overriding
+        run: cp -Rn hugo-files/public/ public/
+
+      - name: Rename and copy Hugo's sitemap.xml
+        run: cp hugo-files/public/sitemap.xml public/sitemap-hugo.xml
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
