@@ -29,9 +29,8 @@ jobs:
           extended: true  # Enable scss
 
       - name: Build with Hugo
-        run:
-          shell: hugo --minify
-          working-directory: hugo-files
+        run: hugo --minify
+        working-directory: hugo-files
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
