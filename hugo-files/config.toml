@@ -1,0 +1,6 @@
+baseURL = "https://maku77.github.io/jekyll-with-hugo/"
+languageCode = "ja-jp"
+relativeurls = true
+theme = "sample"
+title = 'My New Hugo Site'
+
