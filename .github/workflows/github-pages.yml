@@ -33,7 +33,7 @@ jobs:
         working-directory: hugo-files
 
       - name: Merge public directories without overriding
-        run: cp -Rn hugo-files/public/ public/
+        run: cp -RTn hugo-files/public public
 
       - name: Rename and copy Hugo's sitemap.xml
         run: cp hugo-files/public/sitemap.xml public/sitemap-hugo.xml
