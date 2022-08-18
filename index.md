@@ -5,5 +5,5 @@
 layout: home
 ---
 
-- [Hugo で生成したページへのリンク](/p/dv5cjsz/)
+- [Hugo で生成したページへのリンク](diary/)
 
