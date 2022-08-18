@@ -50,6 +50,5 @@ exclude:
   - gemfiles/
   - hugo-files/
   - node_modules/
-  - public/
   - vendor/
 

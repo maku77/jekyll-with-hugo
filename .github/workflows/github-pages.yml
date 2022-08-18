@@ -17,10 +17,10 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.0' # Not needed with a .ruby-version file
-          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+          bundler-cache: true # Runs 'bundle install' and caches installed gems automatically
 
       - name: Build with Jekyll
-        run: bundle exec jekyll build --destination public
+        run: bundle exec jekyll build # Default destination is _site
 
       - name: Install Hugo
         uses: peaceiris/actions-hugo@v2
@@ -29,18 +29,18 @@ jobs:
           extended: true  # Enable scss
 
       - name: Build with Hugo
-        run: hugo --minify
+        run: hugo --minify # Default destination is public
         working-directory: hugo-files
 
-      - name: Merge public directories without overriding
-        run: cp -RTn hugo-files/public public
+      - name: Merge build results without overriding
+        run: cp -RTn hugo-files/public _site
 
       - name: Rename and copy Hugo's sitemap.xml
-        run: cp hugo-files/public/sitemap.xml public/sitemap-hugo.xml
+        run: cp hugo-files/public/sitemap.xml _site/sitemap-hugo.xml
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: public
+          publish_dir: _site
 
